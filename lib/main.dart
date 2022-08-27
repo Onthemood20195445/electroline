@@ -38,6 +38,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _index = 0;
 
+
   final List<Widget> imageSliders = imgList
       .map((item) => Container(
             child: Container(
@@ -151,58 +152,40 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: DefaultTabController(
-
-          length: 3,
-          child: Column(children: <Widget>[
-            TabBar(
-                labelColor: Colors.red[900],
-                unselectedLabelColor: Colors.black,
-                indicatorColor: Colors.red[900],
-                tabs: [
-                  Tab(
-                    text: "All",
-                  ),
-                  Tab(
-                    text: "Deals",
-                  ),
-                  Tab(
-                    text: "Contact Us",
-                  ),
-                ]),
-            /*Container(
-                child: CarouselSlider(
-              options: CarouselOptions(
-                autoPlayCurve: Curves.easeOutQuad,
-                enableInfiniteScroll: true,
-                aspectRatio: 1.6,
-                enlargeCenterPage: true,
-                scrollDirection: Axis.horizontal,
-                autoPlay: true,
-              ),
-              items: imageSliders,
-            )),*/
-
-            Stack(
-              children: <Widget>[
+        length: 3,
+        //padding: EdgeInsets.all(8),
+        child: Stack(
+          children: <Widget>[
             ListView(
-
               shrinkWrap: true,
-              children:<Widget> [
-
+              children: <Widget>[
+                TabBar(
+                  labelColor: Colors.red[900],
+                  unselectedLabelColor: Colors.black,
+                  indicatorColor: Colors.red[900],
+                  tabs: [
+                    Tab(
+                      text: "All",
+                    ),
+                    Tab(
+                      text: "Deals",
+                    ),
+                    Tab(
+                      text: "Contact Us",
+                    )]),
                 Container(
                     child: CarouselSlider(
-                      options: CarouselOptions(
-                        autoPlayCurve: Curves.easeOutQuad,
-                        enableInfiniteScroll: true,
-                        aspectRatio: 1.6,
-                        enlargeCenterPage: true,
-                        scrollDirection: Axis.horizontal,
-                        autoPlay: true,
-                      ),
-                      items: imageSliders,
-                    )),
-
-                  Row(children: <Widget>[
+                  options: CarouselOptions(
+                    autoPlayCurve: Curves.easeOutQuad,
+                    enableInfiniteScroll: true,
+                    aspectRatio: 1.6,
+                    enlargeCenterPage: true,
+                    scrollDirection: Axis.horizontal,
+                    autoPlay: true,
+                  ),
+                  items: imageSliders,
+                )),
+                Row(children: <Widget>[
                   Container(
                     width: 180,
                     height: 180,
@@ -217,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: <Widget>[
                           Container(
                             color: Colors.white,
-                            child: Image(image: AssetImage('images/built.png')),
+                            child: Image(image: AssetImage('images/gpu.jpg')),
                           ),
                           Container(
                             color: Colors.black,
@@ -248,12 +231,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: <Widget>[
                           Container(
                             color: Colors.white,
-                            child: Image(image: AssetImage('images/built.png')),
+                            child: Image(image: AssetImage('images/cpu.jpg')),
                           ),
                           Container(
                             color: Colors.black,
                             child: Center(
-                              child: Text("GPU",
+                              child: Text("CPU",
                                   style: TextStyle(
                                     fontSize: 30,
                                     fontFamily: "Times",
@@ -266,78 +249,204 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ]),
-                  Row(children: <Widget>[
-                    Container(
-                      width: 180,
-                      height: 180,
-                      //margin: EdgeInsets.all(20),
-                      padding: EdgeInsets.all(20),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7),
-                        ),
-                        color: Colors.black,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              color: Colors.white,
-                              child: Image(image: AssetImage('images/built.png')),
+                Row(children: <Widget>[
+                  Container(
+                    width: 180,
+                    height: 180,
+                    //margin: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      color: Colors.black,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            color: Colors.white,
+                            child: Image(image: AssetImage('images/motherboard.jpg')),
+                          ),
+                          Container(
+                            color: Colors.black,
+                            child: Center(
+                              child: Text("Motherboard",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: "Times",
+                                    color: Colors.red[900],
+                                  )),
                             ),
-                            Container(
-                              color: Colors.black,
-                              child: Center(
-                                child: Text("GPU",
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontFamily: "Times",
-                                      color: Colors.red[900],
-                                    )),
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     ),
-                    Container(
-                      width: 180,
-                      height: 180,
-                      //margin: EdgeInsets.all(20),
-                      padding: EdgeInsets.all(20),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7),
-                        ),
-                        color: Colors.black,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              color: Colors.white,
-                              child: Image(image: AssetImage('images/built.png')),
+                  ),
+                  Container(
+                    width: 180,
+                    height: 180,
+                    //margin: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      color: Colors.black,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            color: Colors.white,
+                            child: Image(image: AssetImage('images/ram.jpg')),
+                          ),
+                          Container(
+                            color: Colors.black,
+                            child: Center(
+                              child: Text("Ram",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontFamily: "Times",
+                                    color: Colors.red[900],
+                                  )),
                             ),
-                            Container(
-                              color: Colors.black,
-                              child: Center(
-                                child: Text("GPU",
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontFamily: "Times",
-                                      color: Colors.red[900],
-                                    )),
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     ),
-                  ]),
-
-                ],)
-
+                  ),
+                ]),
+                Row(children: <Widget>[
+                  Container(
+                    width: 180,
+                    height: 180,
+                    //margin: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      color: Colors.black,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            color: Colors.white,
+                            child: Image(image: AssetImage('images/power.jpg'),height: 90,width: 140,),
+                          ),
+                          Container(
+                            color: Colors.black,
+                            child: Center(
+                              child: Text("Power",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontFamily: "Times",
+                                    color: Colors.red[900],
+                                  )),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 180,
+                    height: 180,
+                    //margin: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      color: Colors.black,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            color: Colors.white,
+                            child: Image(image: AssetImage('images/cases.jpg'),width:140,height: 90,),
+                          ),
+                          Container(
+                            color: Colors.black,
+                            child: Center(
+                              child: Text("Cases",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontFamily: "Times",
+                                    color: Colors.red[900],
+                                  )),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
+                Row(children: <Widget>[
+                  Container(
+                    width: 180,
+                    height: 180,
+                    //margin: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      color: Colors.black,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            color: Colors.white,
+                            child: Image(image: AssetImage('images/cooling.jpg'),height: 90,width: 140,),
+                          ),
+                          Container(
+                            color: Colors.black,
+                            child: Center(
+                              child: Text("Fans",
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontFamily: "Times",
+                                    color: Colors.red[900],
+                                  )),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 180,
+                    height: 180,
+                    //margin: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      color: Colors.black,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            color: Colors.white,
+                            child: Image(image: AssetImage('images/acces.jpg'),height: 90,width: 200,),
+                          ),
+                          Container(
+                            color: Colors.black,
+                            child: Center(
+                              child: Text("Accesories",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontFamily: "Times",
+                                    color: Colors.red[900],
+                                  )),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
 
               ],
             )
-          ]) // This trailing comma makes auto-formatting nicer for build methods.
-          ),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: [
