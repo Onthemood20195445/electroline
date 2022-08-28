@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:electroline/Homepage.dart';
+
 
 
 void main() {
@@ -29,6 +31,8 @@ class _MyAppState extends State<MyApp> {
         home: MyHomePage(),
     routes: {
       '0': (context) => MyHomePage(),
+
+
 
 
     });
