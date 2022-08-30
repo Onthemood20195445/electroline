@@ -104,23 +104,82 @@ class gpuState extends State<gpu> {
               ],
             ),
           ),
-          body: SafeArea(
-            child: Column(children: [
-              SizedBox(height: 5,),
-              Container(
-                height: 180,
-                width: 160,
-                decoration: BoxDecoration(color: Colors.black,
-                  borderRadius: BorderRadius.circular(16)
-                ),
-                child: Image.asset('images/gpu.jpg'),
-                
-              ),
-              Text('ggg'),
-              Text('\$290'),
+          body: Center(
+            child: Container(
+                child: ListView(
+                  children: [
+                    Row(children: <Widget>[
+                      Container(
+                        width: 180,
+                        height: 180,
+                        //margin: EdgeInsets.all(20),
+                        //padding: EdgeInsets.all(20),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          color: Colors.black,
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                color: Colors.black,
+                                child: Image(
+                                    image: AssetImage('images/rtx80.jpg')),
+                              ),
+                              Container(
+                                color: Colors.black,
+                                child: Center(
+                                  child: Text("NIVIDIA GeFore Rtx 3080",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: "Times",
+                                        color: Colors.red[900],
+                                      )),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 30,),
+                      Container(
+                        width: 180,
+                        height: 180,
+                        //margin: EdgeInsets.all(20),
+                        //padding: EdgeInsets.all(20),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          color: Colors.black,
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                color: Colors.white,
+                                child: Image(
+                                    image: AssetImage('images/rtx3080.jpg')),
+                              ),
+                              Container(
+                                color: Colors.black,
+                                child: Center(
+                                  child: Text("CPU",
+                                      style: TextStyle(
+                                        fontSize: 30,
+                                        fontFamily: "Times",
+                                        color: Colors.red[900],
+                                      )),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ],
 
-            ]),
-          ),
+                ),
+              ),
+            ),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             items: [
