@@ -96,7 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
               "Build your dream PC :)",
               style: TextStyle(color: Colors.red[900], fontSize: 30),
             )),
-            ListTile(
+            ListTile(onTap: () {
+              Navigator.pushNamed(context, '3');
+            },
               title: Text(
                 'Graphics Card',
                 style: TextStyle(color: Colors.red[900]),
@@ -534,7 +536,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.white),
                       ),
                     ),
-                        ListTile(
+                        ListTile(onTap: () {
+                          Navigator.pushNamed(context, '2');
+                        },
                           leading: FaIcon(FontAwesomeIcons.youtube,color: Colors.red),
                           title: Text('Youtube',style: TextStyle(
 
@@ -542,7 +546,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white),),
                         ),
-                        ListTile(
+                        ListTile(onTap: () {
+                          Navigator.pushNamed(context, '1');
+                        },
                           leading: FaIcon(FontAwesomeIcons.facebookSquare,color: Colors.blueAccent),
                           title: Text('Facebook',style: TextStyle(
 
@@ -573,7 +579,14 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.red[900],
         onTap: (int index) {
           setState(() {
-            _index = index;
+            this._index = index;
+            if (index == 0) {
+              Navigator.pushNamed(context, "0");
+            } else if (index == 1) {
+              Navigator.pushNamed(context, "");
+            } else if (index == 2) {
+              Navigator.pushNamed(context, "");
+            }
           });
         },
       ),

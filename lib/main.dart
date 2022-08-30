@@ -1,7 +1,11 @@
 
+import 'package:electroline/facebook.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:electroline/Homepage.dart';
+import 'facebook.dart';
+import 'youtube.dart';
+import 'gpu.dart';
 
 
 
@@ -31,6 +35,10 @@ class _MyAppState extends State<MyApp> {
         home: MyHomePage(),
     routes: {
       '0': (context) => MyHomePage(),
+      '1': (context) => face(),
+      '2': (context) => youtube(),
+      '3': (context) => gpu(),
+
 
 
 
