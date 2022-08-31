@@ -17,35 +17,38 @@ class _homeAllState extends State<homeAll> {
           children: <Widget>[
             imageSlider(),
             Row(children: <Widget>[
-              Container(
-                width: 180,
-                height: 180,
-                //margin: EdgeInsets.all(20),
-                padding: EdgeInsets.all(20),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  color: Colors.black,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        color: Colors.white,
-                        child: Image(
-                            image: AssetImage('images/gpu.jpg')),
-                      ),
-                      Container(
-                        color: Colors.black,
-                        child: Center(
-                          child: Text("GPU",
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontFamily: "Times",
-                                color: Colors.red[900],
-                              )),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, "3"),
+                child: Container(
+                  width: 180,
+                  height: 180,
+                  //margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(20),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    color: Colors.black,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          color: Colors.white,
+                          child: Image(
+                              image: AssetImage('images/gpu.jpg')),
                         ),
-                      )
-                    ],
+                        Container(
+                          color: Colors.black,
+                          child: Center(
+                            child: Text("GPU",
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontFamily: "Times",
+                                  color: Colors.red[900],
+                                )),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

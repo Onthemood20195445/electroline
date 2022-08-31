@@ -12,7 +12,7 @@ class gpu extends StatefulWidget {
 }
 
 class gpuState extends State<gpu> {
-  int _index = 3;
+  int _index = 0;
 
   Widget build(BuildContext context) {
     return MaterialApp(
