@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class bottomBar extends StatefulWidget {
   int Cindex;
@@ -17,7 +18,7 @@ class _bottomBarState extends State<bottomBar> {
       items: [
         BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
         BottomNavigationBarItem(
-            label: 'User', icon: Icon(Icons.person_outline)),
+            label: 'Favourite', icon: FaIcon(FontAwesomeIcons.heart)),
         BottomNavigationBarItem(
             label: 'Cart', icon: Icon(Icons.shopping_cart)),
         BottomNavigationBarItem(label: 'Settings', icon: Icon(Icons.settings))

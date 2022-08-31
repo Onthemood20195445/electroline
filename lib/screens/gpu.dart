@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:electroline/models/product.dart';
 import 'package:electroline/models/item_card.dart';
 
+import 'details/details_screen.dart';
+
 class gpu extends StatefulWidget {
   String? cat =" ";
   gpu({Key? key ,this.cat}) : super(key: key);
@@ -16,9 +18,7 @@ class gpuState extends State<gpu> {
   int _index = 0;
 
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
+    return  Scaffold(
           appBar: AppBar(
             centerTitle: true,
             title: Text('GPU',
@@ -47,8 +47,13 @@ class gpuState extends State<gpu> {
                             ),
                             itemBuilder: (context, index) => ItemCard(
                               product: products[index],
-                              press: () {
-                                }
+                              press: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailsScreen(
+                                      product: products[index],
+                                    ),
+                                  )),
 
                             )),
                       ),
@@ -59,6 +64,6 @@ class gpuState extends State<gpu> {
               ),
             ),
           bottomNavigationBar: bottomBar(Cindex: _index, context: context),
-        ));
+        );
   }
 }
