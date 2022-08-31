@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:electroline/models/product.dart';
 import 'package:electroline/models/item_card.dart';
 
+import 'details/details_screen.dart';
+
 class gpu extends StatefulWidget {
  const gpu({Key? key}) : super(key: key);
 
@@ -36,7 +38,7 @@ class gpuState extends State<gpu> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
                         child: GridView.builder(
                             itemCount: products.length,
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -47,8 +49,13 @@ class gpuState extends State<gpu> {
                             ),
                             itemBuilder: (context, index) => ItemCard(
                               product: products[index],
-                              press: () {
-                                }
+                              press: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailsScreen(
+                                      product: products[index],
+                                    ),
+                                  )),
 
                             )),
                       ),
