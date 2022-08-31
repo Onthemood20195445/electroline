@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "947897951386",
+    "project_id": "electroline-8c5d7",
+    "storage_bucket": "electroline-8c5d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947897951386:android:a6ad2bf0238a75095deb23",
+        "android_client_info": {
+          "package_name": "com.example.electroline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947897951386-gms7mh2ln656mdobfk3mtlpc5herv9re.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8xODiB3ck6CzpxjTF_qnNbgWvtfgl22w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947897951386-gms7mh2ln656mdobfk3mtlpc5herv9re.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
