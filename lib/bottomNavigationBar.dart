@@ -4,7 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class bottomBar extends StatefulWidget {
   int Cindex;
   BuildContext context;
-  bottomBar({Key? key ,required this.context,required this.Cindex }) : super(key: key);
+  bottomBar({Key? key, required this.context, required this.Cindex})
+      : super(key: key);
 
   @override
   State<bottomBar> createState() => _bottomBarState();
@@ -19,8 +20,7 @@ class _bottomBarState extends State<bottomBar> {
         BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
         BottomNavigationBarItem(
             label: 'Favourite', icon: FaIcon(FontAwesomeIcons.heart)),
-        BottomNavigationBarItem(
-            label: 'Cart', icon: Icon(Icons.shopping_cart)),
+        BottomNavigationBarItem(label: 'Cart', icon: Icon(Icons.shopping_cart)),
         BottomNavigationBarItem(label: 'Settings', icon: Icon(Icons.settings))
       ],
       currentIndex: widget.Cindex,
@@ -35,6 +35,7 @@ class _bottomBarState extends State<bottomBar> {
           } else if (index == 1) {
             Navigator.pushNamed(widget.context, "1");
           } else if (index == 2) {
+            this.widget.Cindex = 0;
             Navigator.pushNamed(widget.context, "2");
           } else if (index == 3) {
             Navigator.pushNamed(widget.context, "3");

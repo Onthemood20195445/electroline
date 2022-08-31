@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Product {
-  final String image, title, description;
-  final int price, size, id;
+   final String image, title, description;
+   final int price, size, id;
   late Color color;
   Product({
     required this.id,

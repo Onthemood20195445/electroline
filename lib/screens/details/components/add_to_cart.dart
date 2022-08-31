@@ -1,5 +1,7 @@
+import 'package:electroline/screens/details/components/cart_counter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'cart_screen.dart';
 
 import '../../../models/product.dart';
 
@@ -32,14 +34,18 @@ class AddToCart extends StatelessWidget {
                 Icons.add_shopping_cart,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                carts.add(product);
+                quan.add(numOfItems);
+
+                },
             ),
           ),
           Expanded(
             child: SizedBox(
               height: 50,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {Navigator.pushNamed(context, '2');},
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(

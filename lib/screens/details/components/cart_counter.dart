@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+int numOfItems = 1;
 class CartCounter extends StatefulWidget {
   @override
   _CartCounterState createState() => _CartCounterState();
 }
 
 class _CartCounterState extends State<CartCounter> {
-  int numOfItems = 1;
+
   @override
   Widget build(BuildContext context) {
     return Row(
