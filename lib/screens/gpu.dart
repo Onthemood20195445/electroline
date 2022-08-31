@@ -7,7 +7,8 @@ import 'package:electroline/models/item_card.dart';
 import 'details/details_screen.dart';
 
 class gpu extends StatefulWidget {
- const gpu({Key? key}) : super(key: key);
+  String? cat =" ";
+  gpu({Key? key ,this.cat}) : super(key: key);
 
   @override
   State<gpu> createState() => gpuState();
@@ -20,7 +21,6 @@ class gpuState extends State<gpu> {
     return  Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            elevation: 0,
             title: Text('GPU',
                 style: TextStyle(
                     color: Colors.black,
