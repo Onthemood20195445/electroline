@@ -17,9 +17,7 @@ class gpuState extends State<gpu> {
   int _index = 0;
 
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
+    return  Scaffold(
           appBar: AppBar(
             centerTitle: true,
             elevation: 0,
@@ -66,6 +64,6 @@ class gpuState extends State<gpu> {
               ),
             ),
           bottomNavigationBar: bottomBar(Cindex: _index, context: context),
-        ));
+        );
   }
 }
