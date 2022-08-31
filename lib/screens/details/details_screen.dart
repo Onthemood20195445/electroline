@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/product.dart';
+import 'components/add_to_cart.dart';
 import 'components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -19,6 +20,7 @@ class DetailsScreen extends StatelessWidget {
       backgroundColor: product.color,
       appBar: buildAppBar(context),
       body: Body(product: product),
+      bottomNavigationBar:  AddToCart(product: product),
     );
   }
 
@@ -33,8 +35,6 @@ class DetailsScreen extends StatelessWidget {
         onPressed: () => Navigator.pop(context),
       ),
       actions: <Widget>[
-
-
         SizedBox(width: 20 / 2)
       ],
     );

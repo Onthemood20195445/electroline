@@ -24,24 +24,31 @@ class AddToCart extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
-                color: product.color,
+                color: Colors.white,
               ),
             ),
             child: IconButton(
-              icon: Icon(Icons.add_shopping_cart,),
-
-
+              icon: Icon(
+                Icons.add_shopping_cart,
+                color: Colors.white,
+              ),
               onPressed: () {},
             ),
           ),
           Expanded(
             child: SizedBox(
               height: 50,
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18)),
-                color: product.color,
+              child: TextButton(
                 onPressed: () {},
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                        side: BorderSide(color: Colors.white)
+                  )),
+                  backgroundColor:
+                      MaterialStateColor.resolveWith((states) => product.color),
+                ),
                 child: Text(
                   "Buy  Now".toUpperCase(),
                   style: TextStyle(
