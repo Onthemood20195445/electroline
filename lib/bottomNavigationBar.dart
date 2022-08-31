@@ -33,6 +33,7 @@ class _bottomBarState extends State<bottomBar> {
           if (index == 0) {
             Navigator.pushNamed(widget.context, "0");
           } else if (index == 1) {
+            this.widget.Cindex = 0;
             Navigator.pushNamed(widget.context, "1");
           } else if (index == 2) {
             this.widget.Cindex = 0;

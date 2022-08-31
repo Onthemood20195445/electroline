@@ -1,3 +1,4 @@
+import 'package:electroline/screens/details/components/favourite.dart';
 import 'package:electroline/screens/details/components/product_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:favorite_button/favorite_button.dart';
 import '../../../models/product.dart';
 import 'add_to_cart.dart';
 import 'cart_counter.dart';
+Color iconColor = Colors.grey;
 
 class Body extends StatelessWidget {
   final Product product;
@@ -14,6 +16,7 @@ class Body extends StatelessWidget {
   const Body({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
     // It provide us total height and width
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
@@ -44,10 +47,27 @@ class Body extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           CartCounter(),
-                          FavoriteButton(
-                            isFavorite: false,
-                            valueChanged: () {},
+                          IconButton(
+                            icon: Icon(Icons.favorite),
+                            color: iconColor,
+                            tooltip: 'Add to favorite',
+                            onPressed: () {
+
+                                if(iconColor == Colors.grey){
+                                  iconColor = Colors.red;
+                                }else{
+                                  iconColor = Colors.grey;
+                                }
+
+                            },
                           ),
+                          /*FavoriteButton(
+                            isFavorite: false,
+                            valueChanged: () {
+
+                              favo.add(product);
+                            },
+                          ),*/
                         ],
                       ),
                       SizedBox(height: 20 / 2),

@@ -1,5 +1,6 @@
 
 import 'package:electroline/screens/details/components/cart_screen.dart';
+import 'package:electroline/screens/details/components/favourite.dart';
 import 'package:flutter/material.dart';
 import 'package:electroline/screens/home/Homepage.dart';
 import 'screens/product-view.dart';
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
         home: MyHomePage(),
     routes: {
       '0': (context) => MyHomePage(),
-      '1': (context) => MyHomePage(),
+      '1': (context) => fave(),
       '2': (context) => cart(),
       '3': (context) => gpu(),
 
