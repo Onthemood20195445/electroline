@@ -1,6 +1,8 @@
 import 'package:electroline/drawer.dart';
 import 'package:electroline/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
+import 'package:electroline/models/product.dart';
+import 'package:electroline/models/item_card.dart';
 
 class gpu extends StatefulWidget {
  const gpu({Key? key}) : super(key: key);
@@ -30,75 +32,27 @@ class gpuState extends State<gpu> {
           drawer: appdrawer(),
           body: Center(
             child: Container(
-                child: ListView(
+                child: Column(
                   children: [
-                    Row(children: <Widget>[
-                      Container(
-                        width: 180,
-                        height: 180,
-                        //margin: EdgeInsets.all(20),
-                        //padding: EdgeInsets.all(20),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          color: Colors.black,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                color: Colors.black,
-                                child: Image(
-                                    image: AssetImage('images/rtx80.jpg')),
-                              ),
-                              Container(
-                                color: Colors.black,
-                                child: Center(
-                                  child: Text("NIVIDIA GeFore Rtx 3080",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontFamily: "Times",
-                                        color: Colors.red[900],
-                                      )),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: GridView.builder(
+                            itemCount: products.length,
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 20,
+                              crossAxisSpacing: 20,
+                              childAspectRatio: 0.75,
+                            ),
+                            itemBuilder: (context, index) => ItemCard(
+                              product: products[index],
+                              press: () {
+                                }
+
+                            )),
                       ),
-                      SizedBox(width: 30,),
-                      Container(
-                        width: 180,
-                        height: 180,
-                        //margin: EdgeInsets.all(20),
-                        //padding: EdgeInsets.all(20),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          color: Colors.black,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                color: Colors.white,
-                                child: Image(
-                                    image: AssetImage('images/rtx3080.jpg')),
-                              ),
-                              Container(
-                                color: Colors.black,
-                                child: Center(
-                                  child: Text("CPU",
-                                      style: TextStyle(
-                                        fontSize: 30,
-                                        fontFamily: "Times",
-                                        color: Colors.red[900],
-                                      )),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ]),
+                    ),
                   ],
 
                 ),

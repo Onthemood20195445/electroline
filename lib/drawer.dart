@@ -20,7 +20,9 @@ class _appdrawerState extends State<appdrawer> {
                 "Build your dream PC :)",
                 style: TextStyle(color: Colors.red[900], fontSize: 30),
               )),
-          ListTile(
+          ListTile(onTap: () {
+            Navigator.pushNamed(context, '3');
+          },
             title: Text(
               'Graphics Card',
               style: TextStyle(color: Colors.red[900]),
