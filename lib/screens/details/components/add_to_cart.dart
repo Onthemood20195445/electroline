@@ -37,21 +37,21 @@ class AddToCart extends StatelessWidget {
               onPressed: () {
                 carts.add(product);
                 quan.add(numOfItems);
-
-                },
+              },
             ),
           ),
           Expanded(
             child: SizedBox(
               height: 50,
               child: TextButton(
-                onPressed: () {Navigator.pushNamed(context, '2');},
+                onPressed: () {
+                  Navigator.pushNamed(context, '2');
+                },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.white)
-                  )),
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.white))),
                   backgroundColor:
                       MaterialStateColor.resolveWith((states) => product.color),
                 ),

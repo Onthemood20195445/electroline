@@ -8,7 +8,9 @@ import 'package:favorite_button/favorite_button.dart';
 import '../../../models/product.dart';
 import 'add_to_cart.dart';
 import 'cart_counter.dart';
+
 Color iconColor = Colors.grey;
+bool col = false;
 
 class Body extends StatelessWidget {
   final Product product;
@@ -16,7 +18,6 @@ class Body extends StatelessWidget {
   const Body({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-
     // It provide us total height and width
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
@@ -52,20 +53,23 @@ class Body extends StatelessWidget {
                             color: iconColor,
                             tooltip: 'Add to favorite',
                             onPressed: () {
-
-                                if(iconColor == Colors.grey){
-                                  iconColor = Colors.red;
-                                }else{
-                                  iconColor = Colors.grey;
-                                }
-
+                              if (iconColor == Colors.grey) {
+                                iconColor = Colors.red;
+                                favo.add(product);
+                              } else {
+                                iconColor = Colors.grey;
+                                favo.remove(product);
+                              }
                             },
                           ),
                           /*FavoriteButton(
-                            isFavorite: false,
-                            valueChanged: () {
-
-                              favo.add(product);
+                            isFavorite: col,
+                            iconDisabledColor: Colors.black,
+                            valueChanged: (bool ca) {
+                              ca=col;
+                              if(ca==false){
+                              favo.add(product);}
+                              else{favo.remove(product);}
                             },
                           ),*/
                         ],
