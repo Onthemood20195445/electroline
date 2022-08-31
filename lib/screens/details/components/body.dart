@@ -58,16 +58,11 @@ class Body extends StatelessWidget {
                           style: TextStyle(height: 1.5),
                         ),
                       ),
-
-
-
-
+                      //AddToCart(product: product),
                     ],
                   ),
                 ),
-
                 ProductTitleWithImage(product: product),
-                Positioned(child: AddToCart(product: product), bottom: 5,),
               ],
             ),
           )
