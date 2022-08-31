@@ -5,7 +5,8 @@ import 'package:electroline/models/product.dart';
 import 'package:electroline/models/item_card.dart';
 
 class gpu extends StatefulWidget {
- const gpu({Key? key}) : super(key: key);
+  String? cat =" ";
+  gpu({Key? key ,this.cat}) : super(key: key);
 
   @override
   State<gpu> createState() => gpuState();
@@ -20,7 +21,6 @@ class gpuState extends State<gpu> {
         home: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            elevation: 0,
             title: Text('GPU',
                 style: TextStyle(
                     color: Colors.black,
@@ -36,7 +36,7 @@ class gpuState extends State<gpu> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
                         child: GridView.builder(
                             itemCount: products.length,
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
