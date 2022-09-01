@@ -64,7 +64,7 @@ class Body extends StatelessWidget {
                           ),
                           /*FavoriteButton(
                             isFavorite: col,
-                            iconDisabledColor: Colors.black,
+                            iconDisabledColor: Colors.grey,
                             valueChanged: (bool ca) {
                               ca=col;
                               if(ca==false){
@@ -74,7 +74,7 @@ class Body extends StatelessWidget {
                           ),*/
                         ],
                       ),
-                      SizedBox(height: 20 / 2),
+                      SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         child: Text(

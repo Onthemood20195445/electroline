@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       '0': (context) => MyHomePage(),
       '1': (context) => fave(),
       '2': (context) => cart(),
-      '3': (context) => gpu(),
+      '3': (context) => ProductView(categories: "all"),
 
 
     });
