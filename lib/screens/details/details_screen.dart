@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +23,6 @@ class DetailsScreen extends StatelessWidget {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: product.color,
-      elevation: 0,
       leading: IconButton(
         icon:Icon(Icons.arrow_back_outlined ,
           color: Colors.white,
@@ -35,7 +30,7 @@ class DetailsScreen extends StatelessWidget {
         onPressed: () => Navigator.pop(context),
       ),
       actions: <Widget>[
-        SizedBox(width: 20 / 2)
+        SizedBox(width: 10)
       ],
     );
   }

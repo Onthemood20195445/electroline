@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:electroline/drawer.dart';
 import 'package:electroline/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
@@ -6,64 +8,84 @@ import 'package:electroline/models/item_card.dart';
 
 import 'details/details_screen.dart';
 
-class gpu extends StatefulWidget {
-  String? cat =" ";
-  gpu({Key? key ,this.cat}) : super(key: key);
-
+class ProductView extends StatefulWidget {
+  final String categories;
+  ProductView({Key? key, required this.categories}) : super(key: key);
   @override
-  State<gpu> createState() => gpuState();
+  State<ProductView> createState() => ProductViewState();
 }
 
-class gpuState extends State<gpu> {
+class ProductViewState extends State<ProductView> {
   int _index = 0;
+  late List<Product> ListProducts;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ListProductsFullData() {
+      try {
+        if (widget.categories != "all") {
+          List<Product> list = products
+              .where((element) => element.categories == widget.categories)
+              .toList();
+          ListProducts = list;
+        } else {
+          ListProducts = products;
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
 
+    ListProductsFullData();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text('GPU',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'GreatVibes',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30)),
-            backgroundColor: Colors.red[900],
-          ),
-          drawer: appdrawer(),
-          body: Center(
-            child: Container(
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                        child: GridView.builder(
-                            itemCount: products.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 20,
-                              crossAxisSpacing: 20,
-                              childAspectRatio: 0.75,
-                            ),
-                            itemBuilder: (context, index) => ItemCard(
-                              product: products[index],
-                              press: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DetailsScreen(
-                                      product: products[index],
-                                    ),
-                                  )),
-
-                            )),
-                      ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(widget.categories,
+            style: const TextStyle(
+                color: Colors.black,
+                fontFamily: 'GreatVibes',
+                fontWeight: FontWeight.bold,
+                fontSize: 35)),
+        backgroundColor: Colors.red[900],
+      ),
+      drawer: const appdrawer(),
+      body: Center(
+        child: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                child: GridView.builder(
+                    itemCount: ListProducts.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
+                      childAspectRatio: 0.75,
                     ),
-                  ],
-
-                ),
+                    itemBuilder: (context, index) => ItemCard(
+                          product: ListProducts[index],
+                          press: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailsScreen(
+                                  product: ListProducts[index],
+                                ),
+                              )),
+                        )),
               ),
             ),
-          bottomNavigationBar: bottomBar(Cindex: _index, context: context),
-        );
+          ],
+        ),
+      ),
+      bottomNavigationBar: bottomBar(Cindex: _index, context: context),
+    );
   }
 }

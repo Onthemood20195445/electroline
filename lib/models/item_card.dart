@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:electroline/models/product.dart';
 
 
-
 class ItemCard extends StatelessWidget {
   final Product product;
   final  press;
@@ -11,6 +10,7 @@ class ItemCard extends StatelessWidget {
     required this.product,
     required this.press,
   }) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +21,7 @@ class ItemCard extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(20),
-              // For  demo we use fixed height  and width
-              // Now we dont need them
-              // height: 180,
-              // width: 160,
+              //padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: product.color,
                 borderRadius: BorderRadius.circular(16),
@@ -37,7 +33,7 @@ class ItemCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20 / 4),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
               // products is out demo list
               product.title,
