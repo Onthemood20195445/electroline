@@ -160,7 +160,7 @@ class _signinState extends State<signin> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextButton(
                 onPressed: () async {
-                  setState(() async {
+                  //setState(() async {
                     if (pass == '' || emaill == '') {
                       showAlertDialog(context);
                     } else {
@@ -175,7 +175,7 @@ class _signinState extends State<signin> {
                         print(e);
                       }
                     }
-                  });
+                  //});
                 },
                 style: ButtonStyle(
                   fixedSize: MaterialStateProperty.all(Size(300, 50)),
