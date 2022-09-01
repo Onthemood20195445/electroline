@@ -1,5 +1,6 @@
 import 'package:electroline/bottomNavigationBar.dart';
 import 'package:electroline/models/product.dart';
+import 'package:electroline/screens/details/components/body.dart';
 import 'package:flutter/material.dart';
 import 'package:electroline/bottomNavigationBar.dart';
 
@@ -55,13 +56,14 @@ class _faveState extends State<fave> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(favo[index].title),
-                      Text('\$${favo[index].price.toString()}'),
+                      //Text('\$${favo[index].price.toString()}'),
                     ],
                   ),
                   trailing: IconButton(
                       onPressed: () {
                         setState(() {
                           favo.removeAt(index);
+                          iconColor = Colors.grey;
 
                         });
                       },

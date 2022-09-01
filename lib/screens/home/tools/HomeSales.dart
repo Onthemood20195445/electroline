@@ -1,4 +1,6 @@
+import 'package:electroline/screens/product-view.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeSales extends StatefulWidget {
   const HomeSales({Key? key}) : super(key: key);
@@ -12,37 +14,27 @@ class _HomeSalesState extends State<HomeSales> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: DataTable(
-          border: TableBorder.all(
-              color: Colors.red.shade900,
-              width: 3,
-              borderRadius:
-              BorderRadius.all(Radius.elliptical(30, 20)),
-              style: BorderStyle.none),
-          columns: [
-            DataColumn(label: Text('Black')),
-            DataColumn(label: Text('Red')),
-            DataColumn(label: Text('Yellow')),
-          ],
-          rows: [
-            DataRow(cells: [
-              DataCell(Text('Yes')),
-              DataCell(Text('No')),
-              DataCell(Text('yes')),
-            ]),
-            DataRow(cells: [
-              DataCell(Text('No')),
-              DataCell(Text('Yes')),
-              DataCell(Text('No')),
-            ]),
-            DataRow(cells: [
-              DataCell(Icon(Icons.check)),
-              DataCell(Icon(Icons.check)),
-              DataCell(Icon(Icons.check)),
-            ])
-          ],
-        ),
-      ),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Coming Soon! ',
+            style: TextStyle(
+                fontSize: 60,
+                fontFamily: 'Greatvibes',
+                fontWeight: FontWeight.bold),
+          ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductView(categories: 'all'),
+                    ));
+              },
+              icon: FaIcon(FontAwesomeIcons.gift))
+        ],
+      )),
     );
   }
 }

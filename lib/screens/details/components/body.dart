@@ -12,10 +12,16 @@ import 'cart_counter.dart';
 Color iconColor = Colors.grey;
 bool col = false;
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   final Product product;
 
   const Body({Key? key, required this.product}) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     // It provide us total height and width
@@ -53,32 +59,26 @@ class Body extends StatelessWidget {
                             color: iconColor,
                             tooltip: 'Add to favorite',
                             onPressed: () {
-                              if (iconColor == Colors.grey) {
-                                iconColor = Colors.red;
-                                favo.add(product);
-                              } else {
-                                iconColor = Colors.grey;
-                                favo.remove(product);
-                              }
+                              setState(() {
+                                if (iconColor == Colors.grey) {
+                                  iconColor = Colors.red;
+                                  favo.add(widget.product);
+                                } else {
+                                  iconColor = Colors.grey;
+                                  favo.remove(widget.product);
+                                }
+                              });
+
                             },
                           ),
-                          /*FavoriteButton(
-                            isFavorite: col,
-                            iconDisabledColor: Colors.grey,
-                            valueChanged: (bool ca) {
-                              ca=col;
-                              if(ca==false){
-                              favo.add(product);}
-                              else{favo.remove(product);}
-                            },
-                          ),*/
+
                         ],
                       ),
                       SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         child: Text(
-                          product.description,
+                          widget.product.description,
                           style: TextStyle(height: 1.5),
                         ),
                       ),
@@ -86,7 +86,7 @@ class Body extends StatelessWidget {
                     ],
                   ),
                 ),
-                ProductTitleWithImage(product: product),
+                ProductTitleWithImage(product: widget.product),
               ],
             ),
           )

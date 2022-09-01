@@ -1,4 +1,5 @@
 import 'package:electroline/models/product.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../drawer.dart';
@@ -15,6 +16,45 @@ class cart extends StatefulWidget {
 }
 
 class _cartState extends State<cart> {
+
+
+  void showAlertDialog(BuildContext context) {
+    var alertDialog = CupertinoAlertDialog(
+      title: Text(
+        'Confirmation message',
+        style: TextStyle(color: Colors.black),
+      ),
+      content: Text(
+        'are you sure you want to proceed',
+        style: TextStyle(fontSize: 15),
+      ),
+      actions: [
+        ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor:
+                MaterialStateProperty.all(Colors.blueGrey)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Cancel", style: TextStyle(color: Colors.white))),
+        ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor:
+                MaterialStateProperty.all(Colors.black)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Confirm", style: TextStyle(color: Colors.white))),
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +114,9 @@ class _cartState extends State<cart> {
         scrollDirection: Axis.vertical,
       ),
       bottomNavigationBar: TextButton(
-        onPressed: () {},
+        onPressed: () {
+        showAlertDialog(context);
+        },
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
