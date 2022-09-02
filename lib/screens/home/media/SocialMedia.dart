@@ -63,15 +63,16 @@ class SocialMediaState extends State<SocialMedia> {
             if (loadingPercentage < 100)
               Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Loading..$loadingPercentage\%",
                       style: TextStyle(fontSize: 20),
                     ),
-                    LinearProgressIndicator(
+                    SizedBox(height: 5),
+                    CircularProgressIndicator(
                       value: loadingPercentage / 100.0,
-                      minHeight: 10,
+                      //minHeight: 10,
                       color: Colors.red[900],
                       backgroundColor: Colors.grey,
                     ),
