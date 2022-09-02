@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 String dummyText =
-    "The GeForce RTX™ 3080 Ti and RTX 3080 graphics cards deliver the ultra performance that gamers crave, powered by Ampere—NVIDIA's 2nd gen RTX architecture. They are built with enhanced RT Cores and Tensor Cores, new streaming multiprocessors, and superfast G6X memory for an amazing gaming experience.";
+    "The GeForce RTX™ 3070 Ti and RTX 3070 graphics cards deliver the ultra performance that gamers crave, powered by Ampere—NVIDIA's 2nd gen RTX architecture. They are built with enhanced RT Cores and Tensor Cores, new streaming multiprocessors, and superfast G6X memory for an amazing gaming experience.";
 
 List<Product> products = [];
 
 //reil time<<<<<<<<<<<<<<<<<<<<
+/*
 FirebaseDatabase database = FirebaseDatabase.instance;
 final DatabaseReference refdb = database.ref();
 final refdbproducts = refdb.child("products");
 
 sendData() async {
   refdbproducts.push().set({
-    "id": 1,
-    "title": "NIVIDIA GeForce RTX3080",
+    "id": 2,
+    "title": "Gi RTX3080",
     "price": 1450,
     "size": 16,
     "description": dummyText,
@@ -23,8 +24,9 @@ sendData() async {
     "categories": "gpu",
   });
 }
+*/
 
-getData() async {
+/*getData() async {
   final snapshot = await refdbproducts.get();
   if (snapshot.exists) {
     print(snapshot.value);
@@ -32,12 +34,12 @@ getData() async {
   } else {
     print('No data available.');
   }
-}
+}*/
 //<<<<<<<<<<<<<<<<<<<<<<<<
 
 //fire sotur<<<<<<<<<<<<<<<<<<<<<<
 final db = FirebaseFirestore.instance;
-final ref = db.collection("products").doc('MM').withConverter(
+final ref = db.collection("products").doc().withConverter(
       fromFirestore: Product.fromFirestore,
       toFirestore: (Product P, _) => P.toFirestore(),
     );
@@ -72,13 +74,13 @@ firestoreGet() async {
 
 firestoreSend() async {
   await ref.set(Product(
-    id: 1,
-    title: "NIVIDIA GeForce 3080",
-    price: 1450,
+    id: 19,
+    title: "Rgb mousepad",
+    price: 10,
     size: 16,
-    description: dummyText,
-    image: "images/rtx80.jpg",
-    categories: "gpu",
+    description: "Rgb gaming mousepad it is flexable and an be rolled",
+    image: "images/acces3.jpg",
+    categories: "accesories",
   ));
 }
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

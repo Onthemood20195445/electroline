@@ -18,10 +18,7 @@ class ProductTitleWithImage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            "Aristocratic Hand Bag",
-            style: TextStyle(color: Colors.white),
-          ),
+
           Text(
             product.title,
             style: Theme.of(context)
@@ -48,7 +45,8 @@ class ProductTitleWithImage extends StatelessWidget {
               Expanded(
                 child: Hero(
                   tag: "${product.id}",
-                  child: Image.asset(
+                  child: Image.asset(height: 200,
+                    width: 100,
                     product.image,
                     fit: BoxFit.fill,
                   ),
