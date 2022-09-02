@@ -24,6 +24,11 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
+    void fav() {
+      iconColor = Colors.red;
+      favo.add(widget.product);
+    }
+
     // It provide us total height and width
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
@@ -61,17 +66,16 @@ class _BodyState extends State<Body> {
                             onPressed: () {
                               setState(() {
                                 if (iconColor == Colors.grey) {
-                                  iconColor = Colors.red;
-                                  favo.add(widget.product);
+                                  /*iconColor = Colors.red;
+                                  favo.add(widget.product);*/
+                                  fav();
                                 } else {
                                   iconColor = Colors.grey;
                                   favo.remove(widget.product);
                                 }
                               });
-
                             },
                           ),
-
                         ],
                       ),
                       SizedBox(height: 10),

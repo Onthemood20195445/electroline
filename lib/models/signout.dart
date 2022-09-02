@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:electroline/screens/account.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,15 @@ class sout extends StatefulWidget {
 }
 
 class _soutState extends State<sout> {
+  List<Widget> dataListWidget(AsyncSnapshot snapshot) {
+    return snapshot.data.docs.map<Widget>((document) {
+      return ListTile(
+        title: Text(document['name']),
+        subtitle: Text(document['city']),
+      );
+    }).toList();
+  }
+
   void showAlertDialog(BuildContext context) {
     var alertDialog = CupertinoAlertDialog(
       title: Text(
@@ -58,10 +68,11 @@ class _soutState extends State<sout> {
 
   Color c = Colors.black;
   bool ob = true;
-  var emaill = '';
+  var emaill = FirebaseAuth.instance.currentUser?.email;
   var pass = '';
   var confirmpass = '';
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,13 +86,6 @@ class _soutState extends State<sout> {
                   fontWeight: FontWeight.bold,
                   fontSize: 30)),
           backgroundColor: Colors.red[900],
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_outlined,
-              color: Colors.white,
-            ),
-            onPressed: () => Navigator.pop(context),
-          ),
         ),
         body: ListView(
           shrinkWrap: true,
@@ -89,83 +93,18 @@ class _soutState extends State<sout> {
             SizedBox(
               height: 40,
             ),
-            Container(
-              //Username
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: TextFormField(
-                onChanged: (value) {
-                  emaill = value;
+            /* Container(
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance.collection('customers').snapshots(),
+                builder: (context, snapshot){
+                  return ListView(
+                    children: dataListWidget(snapshot),
+                  );
                 },
-                decoration: InputDecoration(
-                    labelText: "Email",
-                    labelStyle: TextStyle(
-                      color: Colors.red[900],
-                    ),
-                    border: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.red.shade900, width: 4)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(28),
-                        borderSide: BorderSide(color: Colors.red.shade900)),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red.shade900),
-                      borderRadius: BorderRadius.circular(28),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.person_outlined,
-                      color: Colors.red.shade900,
-                    )),
               ),
-            ),
+            ),*/
             SizedBox(
               height: 20,
-            ),
-            Container(
-              //Password
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: TextFormField(
-                onChanged: (value) {
-                  pass = value;
-                },
-                decoration: InputDecoration(
-                  labelText: "Password",
-                  labelStyle: TextStyle(
-                    color: Colors.red.shade900,
-                  ),
-                  border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.red.shade900, width: 4)),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(28),
-                      borderSide: BorderSide(color: Colors.red.shade900)),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red.shade900),
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  prefixIcon: Icon(
-                    Icons.lock_outline,
-                    color: Colors.red.shade900,
-                  ),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        if (c == Colors.black) {
-                          c = Colors.red.shade900;
-                          ob = false;
-                        } else {
-                          c = Colors.black;
-                          ob = true;
-                        }
-                      });
-                    },
-                    icon: Icon(
-                      Icons.remove_red_eye_outlined,
-                      color: c,
-                    ),
-                  ),
-                ),
-                obscureText: ob,
-              ),
             ),
             SizedBox(
               height: 20,
@@ -222,7 +161,7 @@ class _soutState extends State<sout> {
             setState(() {
               this.widget.Cindex = index;
               if (index == 0) {
-                Navigator.pushNamed(widget.context, "0");
+                Navigator.pushNamed(widget.context, "5");
               } else if (index == 1) {
                 this.widget.Cindex = 0;
                 Navigator.pushNamed(widget.context, "1");

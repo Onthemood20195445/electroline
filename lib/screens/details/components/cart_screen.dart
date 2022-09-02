@@ -152,12 +152,14 @@ class _cartState extends State<cart> {
             child: Card(
               child: ListTile(
                   leading: Text('x${quan[index].toString()}'),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(carts[index].title),
-                      Text('\$${carts[index].price.toString()}'),
-                    ],
+                  title: FittedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(carts[index].title),
+                        Text('\$${carts[index].price.toString()}'),
+                      ],
+                    ),
                   ),
                   trailing: IconButton(
                       onPressed: () {

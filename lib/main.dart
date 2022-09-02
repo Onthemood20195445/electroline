@@ -2,6 +2,7 @@ import 'package:electroline/models/signout.dart';
 import 'package:electroline/screens/account.dart';
 import 'package:electroline/screens/details/components/cart_screen.dart';
 import 'package:electroline/screens/details/components/favourite.dart';
+import 'package:electroline/screens/home/hpage.dart';
 import 'package:flutter/material.dart';
 import 'package:electroline/screens/home/Homepage.dart';
 import 'models/product.dart';
@@ -44,6 +45,8 @@ class _MyAppState extends State<MyApp> {
           '2': (context) => cart(),
           '3': (context) => account(),
           '4': (context) => sout(context: context, Cindex: 3),
+          '5': (context) => hpage(context: context, Cindex: 0),
+
         });
   }
 }
