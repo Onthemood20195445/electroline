@@ -48,9 +48,9 @@ class _homeAllState extends State<homeAll> {
                               height: 120,
                             ),
                             Text(
-                              categories[index].name,
+                              categories[index].name.toUpperCase(),
                               style: TextStyle(
-                                fontSize: 25,
+                                fontSize: 18,
                                 fontFamily: "Times",
                                 color: Colors.red[900],
                               ),
