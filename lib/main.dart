@@ -11,9 +11,11 @@ import 'models/product.dart';
 import 'screens/product-view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(
     name: 'firebase',
     options: DefaultFirebaseOptions.currentPlatform,
@@ -23,6 +25,7 @@ void main() async {
   //sendData();
   //getData();
   runApp(const MyApp());
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatefulWidget {

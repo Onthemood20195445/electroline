@@ -46,7 +46,7 @@ final ref = db.collection("products").doc().withConverter(
 
 final refs = db.collection("products");
 firestoreGets() async {
-  products.addAll(
+   products.addAll(
       (await refs.get().then((value) => value.docs.map<Product>((document) {
             return Product(
               id: document['id'],
