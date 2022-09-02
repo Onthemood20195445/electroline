@@ -1,4 +1,5 @@
 import 'package:electroline/models/product.dart';
+import 'package:electroline/screens/home/Homepage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +17,6 @@ class cart extends StatefulWidget {
 }
 
 class _cartState extends State<cart> {
-
-
   void showAlertDialog(BuildContext context) {
     var alertDialog = CupertinoAlertDialog(
       title: Text(
@@ -31,18 +30,20 @@ class _cartState extends State<cart> {
       actions: [
         ElevatedButton(
             style: ButtonStyle(
-                backgroundColor:
-                MaterialStateProperty.all(Colors.blueGrey)),
+                backgroundColor: MaterialStateProperty.all(Colors.blueGrey)),
             onPressed: () {
               Navigator.pop(context);
             },
             child: Text("Cancel", style: TextStyle(color: Colors.white))),
         ElevatedButton(
             style: ButtonStyle(
-                backgroundColor:
-                MaterialStateProperty.all(Colors.black)),
+                backgroundColor: MaterialStateProperty.all(Colors.black)),
             onPressed: () {
-              Navigator.pop(context);
+              setState(() {
+                carts.clear();
+                quan.clear();
+                order(context);
+              });
             },
             child: Text("Confirm", style: TextStyle(color: Colors.white))),
       ],
@@ -54,6 +55,66 @@ class _cartState extends State<cart> {
         });
   }
 
+  void order(BuildContext context) {
+    var alertDialog = CupertinoAlertDialog(
+      title: Text(
+        'Order placed',
+        style: TextStyle(color: Colors.black),
+      ),
+      content: Text(
+        'please visit our store after 2 hours',
+        style: TextStyle(fontSize: 15),
+      ),
+      actions: [
+        ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.black)),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(),
+                  ));
+            },
+            child: Text("Continue shoping",
+                style: TextStyle(color: Colors.white))),
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
+  }
+
+  void empty(BuildContext context) {
+    var alertDialog = CupertinoAlertDialog(
+      title: Text(
+        'Error',
+        style: TextStyle(color: Colors.black),
+      ),
+      content: Text(
+        'Cart is empty',
+        style: TextStyle(fontSize: 15),
+      ),
+      actions: [
+        ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.black)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Ok", style: TextStyle(color: Colors.white))),
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,16 +139,17 @@ class _cartState extends State<cart> {
       ),
       body: ListView.builder(
         itemBuilder: (BuildContext context, index) {
-          return GestureDetector(onTap: (){
-            Navigator.push( context,
-                MaterialPageRoute(
-                builder: (context) => DetailsScreen(
-              product: products[index],
-            ),));
-          },
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsScreen(
+                      product: products[index],
+                    ),
+                  ));
+            },
             child: Card(
-
-
               child: ListTile(
                   leading: Text('x${quan[index].toString()}'),
                   title: Row(
@@ -115,7 +177,11 @@ class _cartState extends State<cart> {
       ),
       bottomNavigationBar: TextButton(
         onPressed: () {
-        showAlertDialog(context);
+          if (carts.length == 0 || quan.length == 0) {
+            empty(context);
+          } else {
+            showAlertDialog(context);
+          }
         },
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(

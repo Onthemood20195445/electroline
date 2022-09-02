@@ -1,5 +1,88 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+String dummyText =
+    "The GeForce RTX™ 3080 Ti and RTX 3080 graphics cards deliver the ultra performance that gamers crave, powered by Ampere—NVIDIA's 2nd gen RTX architecture. They are built with enhanced RT Cores and Tensor Cores, new streaming multiprocessors, and superfast G6X memory for an amazing gaming experience.";
+
+List<Product> products = [];
+
+//reil time<<<<<<<<<<<<<<<<<<<<
+FirebaseDatabase database = FirebaseDatabase.instance;
+final DatabaseReference refdb = database.ref();
+final refdbproducts = refdb.child("products");
+
+sendData() async {
+  refdbproducts.push().set({
+    "id": 1,
+    "title": "NIVIDIA GeForce RTX3080",
+    "price": 1450,
+    "size": 16,
+    "description": dummyText,
+    "image": "images/gpu.jpg",
+    "categories": "gpu",
+  });
+}
+
+getData() async {
+  final snapshot = await refdbproducts.get();
+  if (snapshot.exists) {
+    print(snapshot.value);
+    products = snapshot.value as List<Product>;
+  } else {
+    print('No data available.');
+  }
+}
+//<<<<<<<<<<<<<<<<<<<<<<<<
+
+//fire sotur<<<<<<<<<<<<<<<<<<<<<<
+final db = FirebaseFirestore.instance;
+final ref = db.collection("products").doc('MM').withConverter(
+      fromFirestore: Product.fromFirestore,
+      toFirestore: (Product P, _) => P.toFirestore(),
+    );
+
+final refs = db.collection("products");
+firestoreGets() async {
+  products.addAll(
+      (await refs.get().then((value) => value.docs.map<Product>((document) {
+            return Product(
+              id: document['id'],
+              title: document['title'],
+              price: document['price'],
+              size: document['size'],
+              description: document['description'],
+              image: document['image'],
+              categories: document['categories'],
+            );
+          }))));
+}
+
+firestoreGet() async {
+  final docSnap = await ref.get();
+  final p = docSnap.data(); // Convert to products object
+  if (p != null) {
+    //products=p as List<Product>;
+    products.add(p);
+    print(p);
+  } else {
+    print("No such document.");
+  }
+}
+
+firestoreSend() async {
+  await ref.set(Product(
+    id: 1,
+    title: "NIVIDIA GeForce 3080",
+    price: 1450,
+    size: 16,
+    description: dummyText,
+    image: "images/rtx80.jpg",
+    categories: "gpu",
+  ));
+}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 class Product {
   final String image, title, description, categories;
   final int price, size, id;
@@ -14,14 +97,35 @@ class Product {
     required this.categories,
     this.color = Colors.black,
   });
+  factory Product.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
+    var data = snapshot.data();
+    return Product(
+      id: data?['id'],
+      title: data?['title'],
+      price: data?['price'],
+      size: data?['size'],
+      description: data?['description'],
+      image: data?['image'],
+      categories: data?['categories'],
+    );
+  }
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (id != null) "id": id,
+      if (title != null) "title": title,
+      if (price != null) "price": price,
+      if (size != null) "size": size,
+      if (description != null) "description": description,
+      if (image != null) "image": image,
+      if (categories != null) "categories": categories,
+    };
+  }
 }
 
-
-
-String dummyText =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. When an unknown printer took a galley.";
-
-List<Product> products = [
+/*List<Product> products = [
   Product(
     id: 1,
     title: " NIVIDIA GeForce ",
@@ -76,19 +180,23 @@ List<Product> products = [
     image: "images/ram.jpg",
     categories: "memory",
   ),
-];
+];*/
 
-class _categories{
-  final String name,image;
-  _categories({required this.name,required this.image, });
+class _categories {
+  final String name, image;
+  _categories({
+    required this.name,
+    required this.image,
+  });
 }
+
 List<_categories> categories = [
-  _categories(name: 'gpu',image: "images/gpu.jpg"),
-  _categories(name: 'cpu',image: "images/cpu.jpg"),
-  _categories(name: 'motherboards',image: "images/motherboard.jpg"),
-  _categories(name: 'memory',image: "images/ram.jpg"),
-  _categories(name: 'power',image: "images/power.jpg"),
-  _categories(name: 'cases',image: "images/cases.jpg"),
-  _categories(name: 'cooling',image: "images/cooling.jpg"),
-  _categories(name: 'accesories',image: "images/acces.jpg"),
+  _categories(name: 'gpu', image: "images/gpu.jpg"),
+  _categories(name: 'cpu', image: "images/cpu.jpg"),
+  _categories(name: 'motherboards', image: "images/motherboard.jpg"),
+  _categories(name: 'memory', image: "images/ram.jpg"),
+  _categories(name: 'power', image: "images/power.jpg"),
+  _categories(name: 'cases', image: "images/cases.jpg"),
+  _categories(name: 'cooling', image: "images/cooling.jpg"),
+  _categories(name: 'accesories', image: "images/acces.jpg"),
 ];

@@ -22,10 +22,11 @@ class ProductViewState extends State<ProductView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    ListProductsFullData() {
-      try {
+
+    ListProductsFullData()async {
+      try  {
         if (widget.categories != "all") {
-          List<Product> list = products
+          List<Product> list =  products
               .where((element) => element.categories == widget.categories)
               .toList();
           ListProducts = list;

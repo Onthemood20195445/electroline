@@ -1,35 +1,52 @@
-import 'package:electroline/models/signout.dart';
+import 'package:electroline/screens/account.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:electroline/main.dart';
 
-class signin extends StatefulWidget {
-  const signin({Key? key}) : super(key: key);
+import '../bottomNavigationBar.dart';
+
+class sout extends StatefulWidget {
+  int Cindex;
+  BuildContext context;
+  sout({Key? key, required this.context, required this.Cindex})
+      : super(key: key);
 
   @override
-  State<signin> createState() => _signinState();
+  State<sout> createState() => _soutState();
 }
 
-class _signinState extends State<signin> {
+class _soutState extends State<sout> {
   void showAlertDialog(BuildContext context) {
     var alertDialog = CupertinoAlertDialog(
       title: Text(
-        'Error message',
+        'Sign out',
         style: TextStyle(color: Colors.red[900]),
       ),
       content: Text(
-        'Check email or password',
+        'Are you sure you want to sign out! ',
         style: TextStyle(fontSize: 15),
       ),
       actions: [
         ElevatedButton(
             style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(Colors.red.shade900)),
+                backgroundColor: MaterialStateProperty.all(Colors.grey)),
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text("Okay", style: TextStyle(color: Colors.black))),
+            child: Text("No", style: TextStyle(color: Colors.white))),
+        ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.black)),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => account(),
+                  ));
+            },
+            child: Text("Yes", style: TextStyle(color: Colors.white))),
       ],
     );
     showDialog(
@@ -39,12 +56,11 @@ class _signinState extends State<signin> {
         });
   }
 
-  TextEditingController _controller = new TextEditingController();
   Color c = Colors.black;
   bool ob = true;
   var emaill = '';
   var pass = '';
-
+  var confirmpass = '';
   final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -52,7 +68,7 @@ class _signinState extends State<signin> {
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
-          title: Text('Sign in',
+          title: Text('Settings',
               style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'GreatVibes',
@@ -70,7 +86,6 @@ class _signinState extends State<signin> {
         body: ListView(
           shrinkWrap: true,
           children: <Widget>[
-            Image(image: AssetImage('images/logo.png')),
             SizedBox(
               height: 40,
             ),
@@ -109,7 +124,6 @@ class _signinState extends State<signin> {
               //Password
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: TextFormField(
-                controller: _controller,
                 onChanged: (value) {
                   pass = value;
                 },
@@ -156,33 +170,16 @@ class _signinState extends State<signin> {
             SizedBox(
               height: 20,
             ),
+            SizedBox(
+              height: 40,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextButton(
-                onPressed: () async {
-                  //setState(() async {
-                  if (pass == '' || emaill == '') {
+                onPressed: () {
+                  setState(() {
                     showAlertDialog(context);
-                  } else {
-                    try {
-                      final newUser = await _auth.signInWithEmailAndPassword(
-                          email: emaill, password: pass);
-                      if (newUser != null) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  sout(context: context, Cindex: 3),
-                            ));
-
-                        _controller.clear();
-                      }
-                    } catch (e) {
-                      showAlertDialog(context);
-                      print(e);
-                    }
-                  }
-                  //});
+                  });
                 },
                 style: ButtonStyle(
                   fixedSize: MaterialStateProperty.all(Size(300, 50)),
@@ -194,7 +191,7 @@ class _signinState extends State<signin> {
                 ),
                 child: FittedBox(
                   child: Text(
-                    "Sign-in".toUpperCase(),
+                    "Sign-out".toUpperCase(),
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
@@ -205,6 +202,38 @@ class _signinState extends State<signin> {
               ),
             ),
           ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
+            BottomNavigationBarItem(
+                label: 'Favourite', icon: FaIcon(FontAwesomeIcons.heart)),
+            BottomNavigationBarItem(
+                label: 'Cart', icon: Icon(Icons.shopping_cart)),
+            BottomNavigationBarItem(
+                label: 'Settings', icon: Icon(Icons.settings))
+          ],
+          currentIndex: widget.Cindex,
+          unselectedItemColor: Colors.black,
+          selectedItemColor: Colors.white,
+          backgroundColor: Colors.red[900],
+          onTap: (int index) {
+            setState(() {
+              this.widget.Cindex = index;
+              if (index == 0) {
+                Navigator.pushNamed(widget.context, "0");
+              } else if (index == 1) {
+                this.widget.Cindex = 0;
+                Navigator.pushNamed(widget.context, "1");
+              } else if (index == 2) {
+                this.widget.Cindex = 0;
+                Navigator.pushNamed(widget.context, "2");
+              } else if (index == 3) {
+                Navigator.pushNamed(widget.context, "4");
+              }
+            });
+          },
         ));
   }
 }

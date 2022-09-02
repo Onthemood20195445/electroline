@@ -1,9 +1,11 @@
 
+import 'package:electroline/models/signout.dart';
 import 'package:electroline/screens/account.dart';
 import 'package:electroline/screens/details/components/cart_screen.dart';
 import 'package:electroline/screens/details/components/favourite.dart';
 import 'package:flutter/material.dart';
 import 'package:electroline/screens/home/Homepage.dart';
+import 'models/product.dart';
 import 'screens/product-view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -16,7 +18,10 @@ void main()async {
     name: 'firebase',
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+//firestoreSend();
+  firestoreGets();
+  //sendData();
+  //getData();
   runApp(const MyApp());
 
 }
@@ -45,6 +50,7 @@ class _MyAppState extends State<MyApp> {
       '1': (context) => fave(),
       '2': (context) => cart(),
       '3': (context) => account(),
+      '4': (context) => sout(context: context,Cindex: 3),
 
 
     });

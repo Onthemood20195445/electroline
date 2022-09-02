@@ -1,3 +1,4 @@
+import 'package:electroline/models/signout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -216,7 +217,13 @@ class _naccountState extends State<naccount> {
                             await _auth.createUserWithEmailAndPassword(
                                 email: emaill, password: pass);
                         if (newUser != null) {
-                          Navigator.pushNamed(context, '0');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    sout(context: context, Cindex: 3),
+                              ));
+                          //Navigator.pushNamed(context, '0');
                         }
                       } catch (e) {
                         print(e);
