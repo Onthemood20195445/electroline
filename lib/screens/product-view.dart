@@ -17,28 +17,37 @@ class ProductView extends StatefulWidget {
 
 class ProductViewState extends State<ProductView> {
   int _index = 0;
-  late List<Product> ListProducts;
+  late List<int> __index;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     ListProductsFullData()async {
       try  {
+        List<int> index=[];
         if (widget.categories != "all") {
           List<Product> list =  products
               .where((element) => element.categories == widget.categories)
               .toList();
-          ListProducts = list;
+          for(int i=0;i<list.length;i++){
+            index.add(products.indexOf(list[i]));
+          }
+          __index=index;
+          print(__index);
         } else {
-          ListProducts = products;
+          for(int i=0;i<products.length;i++){
+            index.add(products.indexOf(products[i]));
+          }
+          __index=index;
+          print(__index);
         }
       } catch (e) {
         print(e);
       }
     }
-
     ListProductsFullData();
+
+
   }
 
   @override
@@ -63,7 +72,7 @@ class ProductViewState extends State<ProductView> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: GridView.builder(
-                    itemCount: ListProducts.length,
+                    itemCount: __index.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -72,12 +81,12 @@ class ProductViewState extends State<ProductView> {
                       childAspectRatio: 0.75,
                     ),
                     itemBuilder: (context, index) => ItemCard(
-                          product: ListProducts[index],
+                          product: products[__index[index]],
                           press: () => Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailsScreen(
-                                  product: ListProducts[index],
+                                  product: products[__index[index]],
                                 ),
                               )),
                         )),

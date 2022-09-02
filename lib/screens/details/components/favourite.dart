@@ -46,7 +46,7 @@ class _faveState extends State<fave> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailsScreen(
-                        product: products[index],
+                        product: products[products.indexOf(favo[index])],
                       ),
                     ));
               },

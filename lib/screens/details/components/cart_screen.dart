@@ -145,7 +145,7 @@ class _cartState extends State<cart> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => DetailsScreen(
-                      product: products[index],
+                      product: products[products.indexOf(carts[index])],
                     ),
                   ));
             },
