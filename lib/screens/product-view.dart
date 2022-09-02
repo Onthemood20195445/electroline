@@ -33,13 +33,11 @@ class ProductViewState extends State<ProductView> {
             index.add(products.indexOf(list[i]));
           }
           __index=index;
-          print(__index);
         } else {
           for(int i=0;i<products.length;i++){
             index.add(products.indexOf(products[i]));
           }
           __index=index;
-          print(__index);
         }
       } catch (e) {
         print(e);

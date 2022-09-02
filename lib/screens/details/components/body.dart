@@ -21,14 +21,25 @@ class Body extends StatefulWidget {
   State<Body> createState() => _BodyState();
 }
 
+
+
 class _BodyState extends State<Body> {
+  bool isFavo(product) {
+    bool x=false;
+    for (int i = 0; i < favo.length; i++) {
+      if (product == favo[i]) {
+        x=true;
+      }
+    }
+    return x;
+  }
   @override
   Widget build(BuildContext context) {
     void fav() {
       iconColor = Colors.red;
       favo.add(widget.product);
     }
-
+    bool _isFavorite=isFavo(widget.product);
     // It provide us total height and width
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
@@ -59,15 +70,26 @@ class _BodyState extends State<Body> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           CartCounter(),
-                          IconButton(
+                          FavoriteButton(
+                            isFavorite: _isFavorite,
+                            // iconDisabledColor: Colors.white,
+                            valueChanged: (isFavorite) {
+                              if (_isFavorite == false) {
+                                favo.add(widget.product);
+                              } else {
+                                favo.remove(widget.product);
+                              }
+                            },
+                          ),
+                          /*IconButton(
                             icon: Icon(Icons.favorite),
                             color: iconColor,
                             tooltip: 'Add to favorite',
                             onPressed: () {
                               setState(() {
                                 if (iconColor == Colors.grey) {
-                                  /*iconColor = Colors.red;
-                                  favo.add(widget.product);*/
+                                  */ /*iconColor = Colors.red;
+                                  favo.add(widget.product);*/ /*
                                   fav();
                                 } else {
                                   iconColor = Colors.grey;
@@ -75,7 +97,7 @@ class _BodyState extends State<Body> {
                                 }
                               });
                             },
-                          ),
+                          ),*/
                         ],
                       ),
                       SizedBox(height: 10),
