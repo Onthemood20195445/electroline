@@ -21,25 +21,25 @@ class Body extends StatefulWidget {
   State<Body> createState() => _BodyState();
 }
 
-
-
 class _BodyState extends State<Body> {
   bool isFavo(product) {
-    bool x=false;
+    bool x = false;
     for (int i = 0; i < favo.length; i++) {
       if (product == favo[i]) {
-        x=true;
+        x = true;
       }
     }
     return x;
   }
+
   @override
   Widget build(BuildContext context) {
     void fav() {
       iconColor = Colors.red;
       favo.add(widget.product);
     }
-    bool _isFavorite=isFavo(widget.product);
+
+    bool _isFavorite = isFavo(widget.product);
     // It provide us total height and width
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(

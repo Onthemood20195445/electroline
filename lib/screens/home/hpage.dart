@@ -82,13 +82,13 @@ class _hpageState extends State<hpage> {
           setState(() {
             this.widget.Cindex = index;
             if (index == 0) {
-              Navigator.pushNamed(widget.context, "0");
+              Navigator.pushNamed(widget.context, "5");
             } else if (index == 1) {
               this.widget.Cindex = 0;
-              Navigator.pushNamed(widget.context, "1");
+              Navigator.pushNamed(widget.context, "6");
             } else if (index == 2) {
               this.widget.Cindex = 0;
-              Navigator.pushNamed(widget.context, "2");
+              Navigator.pushNamed(widget.context, "7");
             } else if (index == 3) {
               Navigator.pushNamed(widget.context, "4");
             }

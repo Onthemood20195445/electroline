@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:electroline/models/product.dart';
 
-
 class ItemCard extends StatelessWidget {
   final Product product;
-  final  press;
+  final press;
   const ItemCard({
     Key? key,
     required this.product,
     required this.press,
   }) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +40,10 @@ class ItemCard extends StatelessWidget {
           ),
           Text(
             "\$${product.price}",
-            style: TextStyle(color:Colors.green,fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
           )
         ],
       ),
     );
-  }}
+  }
+}

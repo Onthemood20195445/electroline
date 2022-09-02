@@ -17,7 +17,7 @@ class _accountState extends State<account> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(automaticallyImplyLeading: false,
         centerTitle: true,
         elevation: 0,
         title: Text('Settings',
@@ -27,13 +27,6 @@ class _accountState extends State<account> {
                 fontWeight: FontWeight.bold,
                 fontSize: 30)),
         backgroundColor: Colors.red[900],
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_outlined,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.pop(context),
-        ),
       ),
       body: GestureDetector(
         child: Center(

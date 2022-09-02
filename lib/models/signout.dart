@@ -49,8 +49,10 @@ class _soutState extends State<sout> {
         ElevatedButton(
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.black)),
-            onPressed: () {
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
               Navigator.push(
+
                   context,
                   MaterialPageRoute(
                     builder: (context) => account(),
@@ -76,7 +78,7 @@ class _soutState extends State<sout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar: AppBar(automaticallyImplyLeading: false,
           centerTitle: true,
           elevation: 0,
           title: Text('Settings',
@@ -164,10 +166,10 @@ class _soutState extends State<sout> {
                 Navigator.pushNamed(widget.context, "5");
               } else if (index == 1) {
                 this.widget.Cindex = 0;
-                Navigator.pushNamed(widget.context, "1");
+                Navigator.pushNamed(widget.context, "6");
               } else if (index == 2) {
                 this.widget.Cindex = 0;
-                Navigator.pushNamed(widget.context, "2");
+                Navigator.pushNamed(widget.context, "7");
               } else if (index == 3) {
                 Navigator.pushNamed(widget.context, "4");
               }

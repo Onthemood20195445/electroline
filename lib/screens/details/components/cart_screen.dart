@@ -3,6 +3,7 @@ import 'package:electroline/screens/home/Homepage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../bottomNavigationBar.dart';
 import '../../../drawer.dart';
 import '../details_screen.dart';
 
@@ -119,7 +120,20 @@ class _cartState extends State<cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () {
+                if (carts.length == 0 || quan.length == 0) {
+                  empty(context);
+                } else {
+                  showAlertDialog(context);
+                }
+              },
+              icon: Icon(Icons.shopping_cart_checkout_outlined,color: Colors.black,))
+        ],
+
+
         centerTitle: true,
         elevation: 0,
         title: Text('Cart',
@@ -129,13 +143,7 @@ class _cartState extends State<cart> {
                 fontWeight: FontWeight.bold,
                 fontSize: 30)),
         backgroundColor: Colors.red[900],
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_outlined,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.pop(context),
-        ),
+
       ),
       body: ListView.builder(
         itemBuilder: (BuildContext context, index) {
@@ -169,6 +177,7 @@ class _cartState extends State<cart> {
                         });
                       },
                       icon: Icon(Icons.close))),
+
             ),
           );
         },
@@ -177,7 +186,7 @@ class _cartState extends State<cart> {
         padding: EdgeInsets.all(5),
         scrollDirection: Axis.vertical,
       ),
-      bottomNavigationBar: TextButton(
+      bottomNavigationBar:bottomBar(context: context, Cindex: 2) /*TextButton(
         onPressed: () {
           if (carts.length == 0 || quan.length == 0) {
             empty(context);
@@ -201,7 +210,7 @@ class _cartState extends State<cart> {
             color: Colors.white,
           ),
         ),
-      ),
+      ),*/
     );
   }
 }

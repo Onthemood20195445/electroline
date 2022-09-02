@@ -3,20 +3,24 @@ import 'package:electroline/models/product.dart';
 import 'package:electroline/screens/details/components/body.dart';
 import 'package:flutter/material.dart';
 import 'package:electroline/bottomNavigationBar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../drawer.dart';
-import '../details_screen.dart';
+import '../screens/details/details_screen.dart';
+
 
 List<Product> favo = [];
 
-class fave extends StatefulWidget {
-  const fave({Key? key}) : super(key: key);
+class fpage extends StatefulWidget {
+  int Cindex;
+  BuildContext context;
+  fpage({Key? key, required this.context, required this.Cindex}) : super(key: key);
 
   @override
-  State<fave> createState() => _faveState();
+  State<fpage> createState() => _fpageState();
 }
 
-class _faveState extends State<fave> {
+class _fpageState extends State<fpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +35,8 @@ class _faveState extends State<fave> {
                   fontSize: 30)),
           backgroundColor: Colors.red[900],
 
-        ),
 
+        ),
         body: ListView.builder(
           itemBuilder: (BuildContext context, index) {
             return GestureDetector(
@@ -75,6 +79,37 @@ class _faveState extends State<fave> {
           padding: EdgeInsets.all(5),
           scrollDirection: Axis.vertical,
         ),
-        bottomNavigationBar: bottomBar(context: context, Cindex: 1));
+        bottomNavigationBar: BottomNavigationBar(
+    type: BottomNavigationBarType.fixed,
+    items: [
+    BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
+    BottomNavigationBarItem(
+    label: 'Favourite', icon: FaIcon(FontAwesomeIcons.heart)),
+    BottomNavigationBarItem(
+    label: 'Cart', icon: Icon(Icons.shopping_cart)),
+    BottomNavigationBarItem(
+    label: 'Settings', icon: Icon(Icons.settings))
+    ],
+    currentIndex: widget.Cindex,
+    unselectedItemColor: Colors.black,
+    selectedItemColor: Colors.white,
+    backgroundColor: Colors.red[900],
+    onTap: (int index) {
+    setState(() {
+    this.widget.Cindex = index;
+    if (index == 0) {
+    Navigator.pushNamed(widget.context, "5");
+    } else if (index == 1) {
+    this.widget.Cindex = 0;
+    Navigator.pushNamed(widget.context, "6");
+    } else if (index == 2) {
+    this.widget.Cindex = 0;
+    Navigator.pushNamed(widget.context, "7");
+    } else if (index == 3) {
+    Navigator.pushNamed(widget.context, "4");
+    }
+    });
+    },
+    ));
   }
 }

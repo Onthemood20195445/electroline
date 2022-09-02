@@ -5,6 +5,8 @@ import 'package:electroline/screens/details/components/favourite.dart';
 import 'package:electroline/screens/home/hpage.dart';
 import 'package:flutter/material.dart';
 import 'package:electroline/screens/home/Homepage.dart';
+import 'models/cpage.dart';
+import 'models/fpage.dart';
 import 'models/product.dart';
 import 'screens/product-view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -46,6 +48,8 @@ class _MyAppState extends State<MyApp> {
           '3': (context) => account(),
           '4': (context) => sout(context: context, Cindex: 3),
           '5': (context) => hpage(context: context, Cindex: 0),
+          '6': (context) => fpage(context: context, Cindex: 1),
+          '7': (context) => cpage(context: context, Cindex: 2),
 
         });
   }
