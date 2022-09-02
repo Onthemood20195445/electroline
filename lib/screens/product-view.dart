@@ -22,30 +22,28 @@ class ProductViewState extends State<ProductView> {
   void initState() {
     super.initState();
 
-    ListProductsFullData()async {
-      try  {
-        List<int> index=[];
+    ListProductsFullData() async {
+      try {
+        List<int> index = [];
         if (widget.categories != "all") {
-          List<Product> list =  products
+          List<Product> list = products
               .where((element) => element.categories == widget.categories)
               .toList();
-          for(int i=0;i<list.length;i++){
+          for (int i = 0; i < list.length; i++) {
             index.add(products.indexOf(list[i]));
           }
-          __index=index;
+          __index = index;
         } else {
-          for(int i=0;i<products.length;i++){
+          for (int i = 0; i < products.length; i++) {
             index.add(products.indexOf(products[i]));
           }
-          __index=index;
+          __index = index;
         }
       } catch (e) {
         print(e);
       }
     }
     ListProductsFullData();
-
-
   }
 
   @override
@@ -67,27 +65,27 @@ class ProductViewState extends State<ProductView> {
           children: [
             Expanded(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20, vertical: 5),
                 child: GridView.builder(
                     itemCount: __index.length,
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 20,
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.75,
                     ),
                     itemBuilder: (context, index) => ItemCard(
-                          product: products[__index[index]],
-                          press: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailsScreen(
-                                  product: products[__index[index]],
-                                ),
-                              )),
-                        )),
+                      product: products[__index[index]],
+                      press: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailsScreen(
+                              product: products[__index[index]],
+                            ),
+                          )),
+                    )),
               ),
             ),
           ],
