@@ -5,15 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class account extends StatefulWidget {
-  const account({Key? key}) : super(key: key);
+  final FirebaseAuth auth;
+  const account({Key? key,required this.auth}) : super(key: key);
 
   @override
   State<account> createState() => _accountState();
 }
 
 class _accountState extends State<account> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +37,7 @@ class _accountState extends State<account> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => naccount(),
+                      builder: (context) => naccount(auth: widget.auth,),
                     ));
               },
               style: ButtonStyle(
@@ -68,7 +67,7 @@ class _accountState extends State<account> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => signin(),
+                      builder: (context) => signin(auth: widget.auth,),
                     ));
               },
               style: ButtonStyle(

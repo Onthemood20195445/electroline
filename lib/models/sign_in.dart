@@ -2,9 +2,10 @@ import 'package:electroline/models/signout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-late final UserCredential newUser ;
+
 class signin extends StatefulWidget {
-  const signin({Key? key}) : super(key: key);
+  final FirebaseAuth auth;
+  const signin({Key? key,required this.auth}) : super(key: key);
   @override
   State<signin> createState() => _signinState();
 }
@@ -38,14 +39,13 @@ class _signinState extends State<signin> {
           return alertDialog;
         });
   }
-
   TextEditingController _controller = new TextEditingController();
   Color c = Colors.black;
   bool ob = true;
   var emaill = '';
   var pass = '';
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,14 +165,14 @@ class _signinState extends State<signin> {
                     showAlertDialog(context);
                   } else {
                     try {
-                      newUser = await _auth.signInWithEmailAndPassword(
+                      final newUser = await widget.auth.signInWithEmailAndPassword(
                           email: emaill, password: pass);
                       if (newUser != null) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  sout(context: context, Cindex: 3),
+                                  sout(auth: widget.auth,),
                             ));
 
                         _controller.clear();

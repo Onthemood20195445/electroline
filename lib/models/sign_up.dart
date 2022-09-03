@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class naccount extends StatefulWidget {
-  const naccount({Key? key}) : super(key: key);
+  final FirebaseAuth auth;
+  const naccount({Key? key,required this.auth}) : super(key: key);
 
   @override
   State<naccount> createState() => _naccountState();
@@ -214,14 +215,14 @@ class _naccountState extends State<naccount> {
                     } else {
                       try {
                         final newUser =
-                            await _auth.createUserWithEmailAndPassword(
+                            await widget.auth.createUserWithEmailAndPassword(
                                 email: emaill, password: pass);
                         if (newUser != null) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    sout(context: context, Cindex: 3),
+                                    sout(auth: _auth,),
                               ));
                           //Navigator.pushNamed(context, '0');
                         }

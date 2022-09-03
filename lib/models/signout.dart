@@ -10,10 +10,8 @@ import 'package:electroline/main.dart';
 import '../bottomNavigationBar.dart';
 
 class sout extends StatefulWidget {
-
-  int Cindex;
-  BuildContext context;
-  sout({Key? key, required this.context, required this.Cindex})
+  final FirebaseAuth auth;
+  sout({Key? key,required this.auth})
       : super(key: key);
 
   @override
@@ -31,7 +29,7 @@ class _soutState extends State<sout> {
 
   }
   void info() {
-    final user = newUser.user;
+    final user = widget.auth.currentUser;
     if (user != null) {
       for (final providerProfile in user.providerData) {
         // ID of the provider (google.com, apple.com, etc.)
@@ -64,11 +62,11 @@ class _soutState extends State<sout> {
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.black)),
             onPressed: () async {
-              await FirebaseAuth.instance.signOut();
+              await widget.auth.signOut();
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => account(),
+                    builder: (context) => account(auth: widget.auth,),
                   ));
             },
             child: Text("Yes", style: TextStyle(color: Colors.white))),
@@ -83,8 +81,6 @@ class _soutState extends State<sout> {
 
   Color c = Colors.black;
   bool ob = true;
-
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -149,37 +145,6 @@ class _soutState extends State<sout> {
             ),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
-            BottomNavigationBarItem(
-                label: 'Favourite', icon: FaIcon(FontAwesomeIcons.heart)),
-            BottomNavigationBarItem(
-                label: 'Cart', icon: Icon(Icons.shopping_cart)),
-            BottomNavigationBarItem(
-                label: 'Settings', icon: Icon(Icons.settings))
-          ],
-          currentIndex: widget.Cindex,
-          unselectedItemColor: Colors.black,
-          selectedItemColor: Colors.white,
-          backgroundColor: Colors.red[900],
-          onTap: (int index) {
-            setState(() {
-              this.widget.Cindex = index;
-              if (index == 0) {
-                Navigator.pushNamed(widget.context, "5");
-              } else if (index == 1) {
-                this.widget.Cindex = 0;
-                Navigator.pushNamed(widget.context, "6");
-              } else if (index == 2) {
-                this.widget.Cindex = 0;
-                Navigator.pushNamed(widget.context, "7");
-              } else if (index == 3) {
-                Navigator.pushNamed(widget.context, "4");
-              }
-            });
-          },
-        ));
+        bottomNavigationBar: bottomBar(context: context,Cindex: 3),);
   }
 }
