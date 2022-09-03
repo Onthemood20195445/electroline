@@ -2,15 +2,15 @@ import 'package:electroline/models/signout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+late final UserCredential newUser ;
 class signin extends StatefulWidget {
   const signin({Key? key}) : super(key: key);
-
   @override
   State<signin> createState() => _signinState();
 }
 
 class _signinState extends State<signin> {
+
   void showAlertDialog(BuildContext context) {
     var alertDialog = CupertinoAlertDialog(
       title: Text(
@@ -25,7 +25,7 @@ class _signinState extends State<signin> {
         ElevatedButton(
             style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all(Colors.red.shade900)),
+                MaterialStateProperty.all(Colors.red.shade900)),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -88,7 +88,7 @@ class _signinState extends State<signin> {
                     ),
                     border: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Colors.red.shade900, width: 4)),
+                        BorderSide(color: Colors.red.shade900, width: 4)),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(28),
                         borderSide: BorderSide(color: Colors.red.shade900)),
@@ -120,7 +120,7 @@ class _signinState extends State<signin> {
                   ),
                   border: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.red.shade900, width: 4)),
+                      BorderSide(color: Colors.red.shade900, width: 4)),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(28),
                       borderSide: BorderSide(color: Colors.red.shade900)),
@@ -165,7 +165,7 @@ class _signinState extends State<signin> {
                     showAlertDialog(context);
                   } else {
                     try {
-                      final newUser = await _auth.signInWithEmailAndPassword(
+                      newUser = await _auth.signInWithEmailAndPassword(
                           email: emaill, password: pass);
                       if (newUser != null) {
                         Navigator.push(

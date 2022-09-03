@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:electroline/models/sign_in.dart';
 import 'package:electroline/screens/account.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:electroline/main.dart';
 import '../bottomNavigationBar.dart';
 
 class sout extends StatefulWidget {
+
   int Cindex;
   BuildContext context;
   sout({Key? key, required this.context, required this.Cindex})
@@ -19,13 +21,25 @@ class sout extends StatefulWidget {
 }
 
 class _soutState extends State<sout> {
-  List<Widget> dataListWidget(AsyncSnapshot snapshot) {
-    return snapshot.data.docs.map<Widget>((document) {
-      return ListTile(
-        title: Text(document['name']),
-        subtitle: Text(document['city']),
-      );
-    }).toList();
+  late final emailAddress;
+  late final profilePhoto;
+  @override
+  void initState() {
+
+    super.initState();
+    info();
+
+  }
+  void info() {
+    final user = newUser.user;
+    if (user != null) {
+      for (final providerProfile in user.providerData) {
+        // ID of the provider (google.com, apple.com, etc.)
+        emailAddress = providerProfile.email;
+        profilePhoto = providerProfile.photoURL;
+
+      }
+    }
   }
 
   void showAlertDialog(BuildContext context) {
@@ -52,7 +66,6 @@ class _soutState extends State<sout> {
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
               Navigator.push(
-
                   context,
                   MaterialPageRoute(
                     builder: (context) => account(),
@@ -70,15 +83,14 @@ class _soutState extends State<sout> {
 
   Color c = Colors.black;
   bool ob = true;
-  var emaill = FirebaseAuth.instance.currentUser?.email;
-  var pass = '';
-  var confirmpass = '';
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(automaticallyImplyLeading: false,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
           centerTitle: true,
           elevation: 0,
           title: Text('Settings',
@@ -95,21 +107,14 @@ class _soutState extends State<sout> {
             SizedBox(
               height: 40,
             ),
-            /* Container(
-              child: StreamBuilder(
-                stream: FirebaseFirestore.instance.collection('customers').snapshots(),
-                builder: (context, snapshot){
-                  return ListView(
-                    children: dataListWidget(snapshot),
-                  );
-                },
+
+            Container(
+              child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Email: $emailAddress',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,)),
+                  //Image.network(profilePhoto)
+                ],
               ),
-            ),*/
-            SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              height: 20,
             ),
             SizedBox(
               height: 40,
