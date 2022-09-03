@@ -21,7 +21,7 @@ class _accountState extends State<account> {
         elevation: 0,
         title: Text('Settings',
             style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontFamily: 'GreatVibes',
                 fontWeight: FontWeight.bold,
                 fontSize: 30)),

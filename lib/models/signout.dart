@@ -91,7 +91,7 @@ class _soutState extends State<sout> {
           elevation: 0,
           title: Text('Settings',
               style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontFamily: 'GreatVibes',
                   fontWeight: FontWeight.bold,
                   fontSize: 30)),

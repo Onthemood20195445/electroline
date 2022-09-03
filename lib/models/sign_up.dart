@@ -54,7 +54,7 @@ class _naccountState extends State<naccount> {
           elevation: 0,
           title: Text('Sign up',
               style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontFamily: 'GreatVibes',
                   fontWeight: FontWeight.bold,
                   fontSize: 30)),

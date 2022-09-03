@@ -25,7 +25,7 @@ class _faveState extends State<fave> {
           elevation: 0,
           title: Text('Favourite',
               style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontFamily: 'GreatVibes',
                   fontWeight: FontWeight.bold,
                   fontSize: 30)),

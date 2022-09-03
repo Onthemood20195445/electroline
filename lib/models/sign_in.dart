@@ -54,7 +54,7 @@ class _signinState extends State<signin> {
           elevation: 0,
           title: Text('Sign in',
               style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontFamily: 'GreatVibes',
                   fontWeight: FontWeight.bold,
                   fontSize: 30)),

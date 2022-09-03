@@ -24,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
         title: Text('Welcome to ElectroLine!',
             style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontFamily: 'GreatVibes',
                 fontWeight: FontWeight.bold,
                 fontSize: 30)),

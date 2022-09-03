@@ -130,7 +130,7 @@ class _cartState extends State<cart> {
                   showAlertDialog(context);
                 }
               },
-              icon: Icon(Icons.shopping_cart_checkout_outlined,color: Colors.black,))
+              icon: Icon(Icons.shopping_cart_checkout_outlined,color: Colors.white,))
         ],
 
 
@@ -138,7 +138,7 @@ class _cartState extends State<cart> {
         elevation: 0,
         title: Text('Cart',
             style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontFamily: 'GreatVibes',
                 fontWeight: FontWeight.bold,
                 fontSize: 30)),

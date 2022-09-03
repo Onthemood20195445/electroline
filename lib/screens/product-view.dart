@@ -51,7 +51,7 @@ class ProductViewState extends State<ProductView> {
         centerTitle: true,
         title: Text(widget.categories,
             style: const TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontFamily: 'GreatVibes',
                 fontWeight: FontWeight.bold,
                 fontSize: 35)),
