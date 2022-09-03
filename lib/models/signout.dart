@@ -67,7 +67,9 @@ class _soutState extends State<sout> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => account(auth: widget.auth,),
+
                   ));
+
             },
             child: Text("Yes", style: TextStyle(color: Colors.white))),
       ],

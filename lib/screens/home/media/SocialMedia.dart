@@ -33,7 +33,7 @@ class SocialMediaState extends State<SocialMedia> {
             elevation: 0,
             title: Text('Welcome to ElectroLine!',
                 style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontFamily: 'GreatVibes',
                     fontWeight: FontWeight.bold,
                     fontSize: 30)),

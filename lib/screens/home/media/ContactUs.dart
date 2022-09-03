@@ -19,7 +19,7 @@ class ContactUs extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.phone_in_talk, color: Colors.green),
           title: Text(
-            'Call 000',
+            'Call 16383',
             style: TextStyle(
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
           ),
@@ -46,7 +46,7 @@ class ContactUs extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      SocialMedia(link: "https://www.youtube.com/"),
+                      SocialMedia(link: "https://www.youtube.com/user/ElectrolineCyprus"),
                 ));
           },
           leading: FaIcon(FontAwesomeIcons.youtube, color: Colors.red),
@@ -62,7 +62,7 @@ class ContactUs extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      SocialMedia(link: "https://www.facebook.com/"),
+                      SocialMedia(link: "https://www.facebook.com/electrolineltd/"),
                 ));
           },
           leading:
