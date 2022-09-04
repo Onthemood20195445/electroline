@@ -2,12 +2,12 @@ import 'package:electroline/models/signout.dart';
 import 'package:electroline/screens/account.dart';
 import 'package:electroline/screens/details/components/cart_screen.dart';
 import 'package:electroline/screens/details/components/favourite.dart';
-import 'package:electroline/screens/home/hpage.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:electroline/screens/home/Homepage.dart';
-import 'models/cpage.dart';
-import 'models/fpage.dart';
+
+
 import 'models/product.dart';
 import 'models/settings.dart';
 import 'screens/product-view.dart';
@@ -54,8 +54,6 @@ class _MyAppState extends State<MyApp> {
           '3': (context) => settings(auth: _auth),
           '4': (context) => account(auth: _auth,),
           '5': (context) => sout(auth: _auth),
-          //'6': (context) => fpage(context: context, Cindex: 1),
-          //'7': (context) => cpage(context: context, Cindex: 2),
 
         });
   }
