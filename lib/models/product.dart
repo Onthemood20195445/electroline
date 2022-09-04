@@ -46,7 +46,7 @@ final ref = db.collection("products").doc().withConverter(
 
 final refs = db.collection("products");
 firestoreGets() async {
-   products.addAll(
+  products.addAll(
       (await refs.get().then((value) => value.docs.map<Product>((document) {
             return Product(
               id: document['id'],
@@ -183,6 +183,41 @@ class Product {
     categories: "memory",
   ),
 ];*/
+
+class order {
+  final String pro;
+  final String quantat;
+  final String user;
+  order({required this.pro, required this.quantat, required this.user});
+  factory order.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
+    var data = snapshot.data();
+    return order(
+      pro: data?['pro'],
+      quantat: data?['quantat'],
+      user: data?['user'],
+    );
+  }
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (pro != null) "pro": pro,
+      if (quantat != null) "quantat": quantat,
+      if (user != null) "user": user,
+    };
+  }
+}
+
+send(auth, carts, quan) async {
+  final reforder = db.collection("order");
+  final pop = reforder.doc("${auth.currentUser.email}").withConverter(
+        fromFirestore: order.fromFirestore,
+        toFirestore: (order P, _) => P.toFirestore(),
+      );
+  await pop
+      .set(order(pro: carts , quantat: quan, user: "${auth.currentUser.email}"));
+}
 
 class _categories {
   final String name, image;

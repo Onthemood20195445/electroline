@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '0': (context) => MyHomePage(),
           '1': (context) => fave(),
-          '2': (context) => cart(),
+          '2': (context) => cart(auth: _auth),
           '3': (context) => settings(auth: _auth),
           '4': (context) => account(auth: _auth,),
           '5': (context) => sout(auth: _auth),

@@ -1,17 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:electroline/models/product.dart';
 import 'package:electroline/screens/home/Homepage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../bottomNavigationBar.dart';
 import '../../../drawer.dart';
+import '../../../models/product.dart';
 import '../details_screen.dart';
 
 List<Product> carts = [];
 List<int> quan = [];
 
+
+
+
+
 class cart extends StatefulWidget {
-  const cart({Key? key}) : super(key: key);
+  final FirebaseAuth auth;
+  const cart({Key? key,required this.auth}) : super(key: key);
 
   @override
   State<cart> createState() => _cartState();
@@ -41,12 +49,50 @@ class _cartState extends State<cart> {
                 backgroundColor: MaterialStateProperty.all(Colors.black)),
             onPressed: () {
               setState(() {
-                carts.clear();
-                quan.clear();
-                order(context);
+                widget.auth.authStateChanges().listen((User? user) async {
+                  if (user == null) {
+                    print('User is currently signed out!');
+                    nosign(context);
+                  } else {
+                    print('User is signed in!');
+                    send(widget.auth, carts.toList().toString(), quan.toList().toString());
+                    carts.clear();
+                    quan.clear();
+                    order(context);
+                  }
+                });
               });
             },
             child: Text("Confirm", style: TextStyle(color: Colors.white))),
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
+  }
+
+  void nosign(BuildContext context) {
+    var alertDialog = CupertinoAlertDialog(
+      title: Text(
+        'Error message',
+        style: TextStyle(color: Colors.black),
+      ),
+      content: Text(
+        ' you need to sign in first ',
+        style: TextStyle(fontSize: 15),
+      ),
+      actions: [
+        ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.blueGrey)),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            child: Text("okay", style: TextStyle(color: Colors.white))),
+
       ],
     );
     showDialog(
@@ -186,31 +232,7 @@ class _cartState extends State<cart> {
         padding: EdgeInsets.all(5),
         scrollDirection: Axis.vertical,
       ),
-      bottomNavigationBar:bottomBar(context: context, Cindex: 2) /*TextButton(
-        onPressed: () {
-          if (carts.length == 0 || quan.length == 0) {
-            empty(context);
-          } else {
-            showAlertDialog(context);
-          }
-        },
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                  side: BorderSide(color: Colors.white))),
-          backgroundColor:
-              MaterialStateColor.resolveWith((states) => Colors.red.shade900),
-        ),
-        child: Text(
-          "Check out".toUpperCase(),
-          style: TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-      ),*/
+      bottomNavigationBar:bottomBar(context: context, Cindex: 2) ,
     );
   }
 }

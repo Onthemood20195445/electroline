@@ -45,6 +45,8 @@ class AddToCart extends StatelessWidget {
               height: 50,
               child: TextButton(
                 onPressed: () {
+                  carts.add(product);
+                  quan.add(numOfItems);
                   Navigator.pushNamed(context, '2');
                 },
                 style: ButtonStyle(
